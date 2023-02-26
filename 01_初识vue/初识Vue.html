@@ -4,16 +4,29 @@
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
-    <div id="demo">
+    <div id="root1">
         <h1> hello,{{name.toUpperCase()}},{{address}}</h1>
     </div>
+
+    <div id="root2">
+        <h1> hello,{{name.toUpperCase()}},{{address}}</h1>
+    </div>
+
     <script type="text/javascript">
         Vue.config.productionTip = false
-        new Vue({
-            el:'#demo',
-            data:{
+        //创建Vue实例
+         new Vue({
+            el:'#root1',//el用于指定当前Vue实例为那个容器服务,值通常为Css选择器字符串
+            data:{//data中用于存储数据,数据供el所指定的容器使用,值先携程一个对象。
                 name:'csess',
-                address:'晨读'
+                address:'晨读1'
+            }
+        })
+        new Vue({
+            el:'#root2',//el用于指定当前Vue实例为那个容器服务,值通常为Css选择器字符串
+            data:{//data中用于存储数据,数据供el所指定的容器使用,值先携程一个对象。
+                name:'csess',
+                address:'晨读2'
             }
         })
     </script>
