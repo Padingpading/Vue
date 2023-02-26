@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        <h1> hello,{{name.toUpperCase()}},{{address}}</h1>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el:'#demo',
+            data:{
+                name:'csess',
+                address:'晨读'
+            }
+        })
+    </script>
+</body>
+</html>
