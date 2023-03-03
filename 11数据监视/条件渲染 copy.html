@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>基本列表</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 遍历数组 -->
+			<h3>人员列表(遍历数组)</h3>
+			<ul v-for="(p,index) of persons" :key="index">{{index}},{{p.name}}-{{p.age}}</ul>
+
+			<!-- 遍历对象 -->
+			<ul v-for="(value,k) of car" :key="k">{{k}}-{{value}}</ul>
+
+			<!-- 遍历字符串 -->
+			<ul v-for="(char,index) of str" :key="k">{{index}}-{{char}}</ul>
+
+			<!-- 遍历指定次数 -->
+			<ul v-for="(number,index) of 5" :key="index">{{index}}-{{number}}</ul>
+		</div>
+		
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+		
+		const vm = new Vue({
+			el:'#root',
+			data:{
+				persons:[
+					{id:"1",name:"1",age:19},
+					{id:"2",name:"2",age:19},
+					{id:"3",name:"3",age:19}
+				],
+				car:{
+					name:"奥迪",
+					price:"70万",
+					color:"黑色"
+				},
+				str:'hello'				
+			}
+		})
+	</script>
+	
+</html>
