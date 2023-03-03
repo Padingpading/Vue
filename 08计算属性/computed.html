@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>姓名案例_插值语法实现</title>
+ </head>
+<body>
+    <div id="root">
+        姓:<input type=text v-model="firstName">
+        名:<input type=text v-model="lastName">
+        名:<input type=text v-model="fullNameComputed">
+        全名:<span>{{firstName}}-{{lastName}}</span>
+        <!-- 方法实现 -->
+        全名:<span>{{fullName()}}</span>
+        <!-- 需要的属性不存在,需要通过已有的属性计算得到 -->
+        全名:<span>{{fullNameComputed}}</span>
+   </div>
+
+    <script type = 'text/javascript'>
+        Vue.config.productionTip = false
+        const a  = new Vue({
+            el:'#root',
+            data:{
+                firstName:'pad',
+                lastName:'嘻嘻哈哈哈'
+            },
+            methods:{
+                fullName(){
+                    return this.firstName+'-'+this.lastName
+                }
+            },
+            computed:{
+                fullNameComputed:{
+                    get(){
+                        console.log('get被调用了')
+                        return this.firstName+'-'+this.lastName
+                    },
+                    set(value){
+                        const str=  value.split('-');
+                        this.firstName = str[0];
+                        this.lastName = str[1];
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
