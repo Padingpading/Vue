@@ -10,7 +10,6 @@
         姓:<input type=text v-model="firstName">
         名:<input type=text v-model="lastName">
         全名:<span>{{firstName}}-{{lastName}}</span>
-        全名:<span>{{fullName()}}</span>
    </div>
 
     <script type = 'text/javascript'>
@@ -18,15 +17,14 @@
         const a  = new Vue({
             el:'#root',
             data:{
-                firstName:'pad',
-                lastName:'嘻嘻哈哈哈'
+                firstName:'李',
+                lastName:'斌'
             },
             methods:{
                 fullName(){
                     return this.firstName+'-'+this.lastName
                 }
             }
-            
         })
     </script>
 </body>

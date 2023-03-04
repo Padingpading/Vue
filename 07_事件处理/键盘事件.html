@@ -8,15 +8,18 @@
 <body>
     <div id="root">
         <h2>欢迎打开{{name}}笔记</h2>
-        <input type='text' placeholder="按回车键输入" @keyup.enter="showInfo"></br>
+        <input type='text' placeholder="输入后直接显示" @keyup="showInfo"></br>
+        <!-- enter:keyCode对应编码的别名 -->
+        <input type='text' placeholder="按esc输入显示" @keyup.esc="showInfo"></br>
         <input type='text' placeholder="按回tab输入" @keyup.tab="showInfo"></br>
         <input type='text' placeholder="按回车键输入" @keyup.huiche="showInfo"></br>
-
+        <input type='text' placeholder="按ctrl键输入" @keyup.ctrl="showInfo"></br>
+        <input type='text' placeholder="按ctrl直接触发" @keydown.ctrl="showInfo"></br>
    </div>
 
     <script type = 'text/javascript'>
         Vue.config.productionTip = false
-        // 定义别名键
+        // 定义别名
         Vue.config.keyCodes.huiche=13
         const a  = new Vue({
             el:'#root',
@@ -25,7 +28,12 @@
             },
             methods:{
               showInfo(e){
-                  console.log(e.target.value)
+                // 获取按下键盘之后输入的值。并且按出回车之后返回值。
+                //e.key:键盘的名字
+                //e.keyCode:键盘的code
+                // if(e.keyCode !==13) return 
+                //   console.log(e.target.value)
+                 console.log(1234)
               }
             }
             

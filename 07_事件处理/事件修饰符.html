@@ -34,16 +34,16 @@
     <div id="root">
         <h2>欢迎看{{name}}学习</h2>
         <!-- 阻止默认事件(常用),点击之后不会跳转 -->
-        <a href="https://www.baidu.com/" @click.revent=showInfo>点我提示信息</a>
+        <a href="https://www.baidu.com/" @click.prevent=showInfo>点我提示信息</a>
 
-        <!-- 阻止事件冒泡,点击之后不会跳转 -->
+        <!-- 阻止事件冒泡,事件出发动作不会传递,点击之后不会跳转 -->
         <div class ='demo1' @click='showInfo'>
-            <!-- 上面那个事件不会触发 -->
+            <!-- 上面那个事件不会触发, -->
             <button @click.stop='showInfo'>点我提示信息</button>
         </div>
         <!-- 事件只触发一次 -->
         <button @click.once='showInfo'>只会弹一次</button>
-        <!-- 事件捕获,捕获下层事件 -->
+        <!-- 事件捕获,捕获阶段触发事件,正常情况 5,2 加上capture 后变成 2 5  -->
         <div class='box1' @click.capture='showMsg(5)'>
             div1
             <div class='box2' @clock='showMsg(2)'>
@@ -51,15 +51,18 @@
             </div>
         </div>
          <!-- 只有event.targetd是当前操作元素是才会触发事件 -->
-         <!-- 点击demo1 只触发demo1事件,button不触发。 -->
+         <!-- 点击button 只触发button事件,demo1不会出发,只会触发吱声的事件。。 -->
         <div class='demo1' @click.self='showMsg(1)'>
             <button @click='showMsg(2)'>点我提示信息</button>
         </div>
 
-        <!--scroll是滚动条滚动,passive没有影响  -->
+        <!--scroll是滚动条滚动,,passive没有影响  -->
          <!--wheel是鼠标滚轮滚动,passive有影响  -->
+         <!-- passive:事件的默认行为立即执行,无需等待事件回调执行完毕 -->
+         <!-- 区别:滚轮一直触发,滚动条滑到底 不会触发了 -->
         <!-- <ul @wheel.passive='demo' class='list'> -->
-        <ul @scroll.passive='demo' class='list'>
+        <ul @wheel='demo' class='list'>
+        <!-- <ul @scroll='demo' class='list'> -->
             <li>1</li>
             <li>2</li>
             <li>3</li>
@@ -86,7 +89,8 @@
                   alert(number)
               },
               demo(){
-                for(let i = 0;i<10000;i++){
+                // 执行循环,事件必须在计算完成之后才会执行事件。
+                for(let i = 0;i<100000;i++){
                     console.log('#')
                 }
                 console.log('累坏了')
