@@ -6,19 +6,19 @@
 
 </head>
 <body>
-    <!-- 普通写法gi -->
     <div id="root">
-        单项数据绑定:<input type="text" v-bind:value="name" ></br>
-        双向项数据绑定:<input type="text" v-model:value="name" >
+        <h1>名称:{{name}}</h1>
+        <h1>學校:{{address}}</h1>
+        <!-- Vu而对象的属性都可以打印 -->
+        <h1>學校:{{$options}}</h1>
    </div>
-   <!-- 下列代码是错的,因为v-model只能引用在变淡类元素(输入类元素) -->
-   <h2 v-model:x='name'>你好a</h2>
     <script type = 'text/javascript'>
         Vue.config.productionTip = false
         new Vue({
             el:'#root',
             data:{
                 name:'java',
+                address:'北京',
                 }
             })
     </script>
