@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>基本列表</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+	<div id="root">
+		<button @click.once='add'>添加老刘</button>
+
+		<!-- 遍历数组,index出问题-->
+		<h3>人员列表(遍历数组)</h3>
+		<ul v-for="(p,index) of persons" :key="index">{{index}},{{p.name}}-{{p.age}}<input type="text"></ul>
+
+		<ul v-for="(p,index) of persons" :key="p.id">{{index}},{{p.name}}-{{p.age}}<input type="text"></ul>
+
+	</div>
+</body>
+
+<script type="text/javascript">
+	Vue.config.productionTip = false
+
+	const vm = new Vue({
+		el: '#root',
+		data: {
+			persons: [
+				{ id: "001", name: "张三", age: 10 },
+				{ id: "002", name: "李四", age: 20 },
+				{ id: "003", name: "王吴", age: 33 }
+			]
+		},
+		methods: {
+			add() {
+				const p = { id: '004', name: "老刘", age: 15 }
+				this.persons.unshift(p)
+			}
+		}
+	})
+</script>
+
+</html>

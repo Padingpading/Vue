@@ -42,17 +42,19 @@
                         console.log('值变化了')
                     }
                 },
-                "numbers.b": {
-                    deep: true,
-                    handler() {
-                        console.log('值变化了')
-                    }
-                },
+                //检测numbers的结构发生变化,多级结构
+                //deep:true
+                // "numbers": {
+                //     deep: true,
+                //     handler() {
+                //         console.log('值变化了')
+                //     }
+                // },
                 //检测numbers的结构发生变化
+                //简写
                 numbers(newValue, oldValue) {
                     console.log('修改了', oldValue, newValue);
                 }
-
             }
         })
     </script>
