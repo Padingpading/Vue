@@ -37,6 +37,11 @@
                         this.firstName = str[0];
                         this.lastName = str[1];
                     }
+                },
+                //简写方式:只存在get的情况下,简写
+                funcName:function(){
+                    console.log('get被调用了')
+                        return this.firstName+'-'+this.lastName
                 }
             }
         })
