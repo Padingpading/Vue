@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>基本列表</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+	<div id="root">
+		<h2>学校名称:{{name}}</h2>
+		<h2>学校地址:{{address}}</h2>
+		<h2>校长是:{{leader}}</h2>
+
+		<button @click="addSex" >添加一个性别属性</button>
+		<h2>学生姓名:{{student.name}}</h2>
+		<h2 v-if="student.sex">学生性別:{{student.sex}}</h2>
+		<h2>学生年龄:{{student.age.rAge}}</h2>
+		<ul>
+			<li v-for="(f,index) of student.friends" :key="index">
+				{{f.name}}--{{f.age}}
+			</li>
+		</ul>
+	</div>
+
+</body>
+
+<script type="text/javascript">
+	Vue.config.productionTip = false
+
+	new Vue({
+		el:'#root',
+		data:{
+			name:'尚硅谷',
+			address:"北京",
+			student:{
+				name:'tom',
+				age:{
+					rAge:40,
+					sAge:29
+				},
+				friends:[
+					{name:'jerry',age:35},
+					{name:'toney',age:36}
+				]
+
+			}
+		}
+		,
+			methods: {
+				addSex(){
+					// 只允许添加属性到data中对象的属性添加
+					//Vue.set(this.student,'sex','男')
+					this.$set(this.student,'sex','男')
+				}
+			},
+	})
+
+
+
+</script>
+
+</html>

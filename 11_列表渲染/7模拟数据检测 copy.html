@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>基本列表</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+	<div id="root">
+	</div>
+
+</body>
+
+<script type="text/javascript">
+	Vue.config.productionTip = false
+
+	let data = {
+		name: "尚硅谷",
+		address: "北京"
+	}
+
+	// 创建一个监视的实例对象,用于监视data中的属性变化
+	const obs = new Observer(data)
+
+	let vm = {}
+	vm._data = obs
+
+	function Observer(obj) {
+		//汇总对象汇总所有属性形成一个数组
+		const keys = Object.keys(obj)
+		//
+		keys.forEach((k) => {
+			Object.defineProperty(this,k, {
+				get() {
+					return obj[k]
+				},
+				set(val) {
+					console.log("修改了")
+					obj[k] = val
+				}
+			})
+		})
+	}
+
+
+</script>
+
+</html>
