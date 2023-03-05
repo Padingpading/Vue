@@ -32,7 +32,7 @@
 		const keys = Object.keys(obj)
 		//
 		keys.forEach((k) => {
-			Object.defineProperty(this,k, {
+			Object.defineProperty(this, k, {
 				get() {
 					return obj[k]
 				},
@@ -43,8 +43,5 @@
 			})
 		})
 	}
-
-
 </script>
-
 </html>

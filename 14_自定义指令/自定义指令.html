@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>v-cloak指令</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+	<div id="root">
+		<!-- 1、定义一个v-big指令,和v-text功能类似,但会把绑定的数值放大10倍 -->
+		<h2>当前的n值是:<span v-text="n"></span></h2>
+		<h2>放大十倍后的n值是:<span v-big="n"></span></h2>
+		<button @click="n++">点我n+1</button>
+		<hr/>
+		<input type="text" v-fbind:value="n"></input>
+	</div>
+</body>
+
+<script type="text/javascript">
+	Vue.config.productionTip = false
+	new Vue({
+		el: '#root',
+		data: {
+			n: 1,
+		},
+		directives: {
+			// elememt v-big 修饰的元素<span>
+			// binding v-big 和 span的绑定对象。
+			//调用时机
+			//1、指令与元素成功绑定时。
+			//2、指令所在的模板被重新解析时。
+			big(elememt, binding) {
+				elememt.innerText = binding.value * 10;
+				//console.log(elememt,binding)
+			},
+			//方式一
+			// fbind(element,bingding){
+			// 	elememt.value = binding.value
+			// },
+			//方式二
+			fbind:{
+				//指令与元素成功绑定时
+				bind(elememt,binding ){
+					elememt.value = binding.value
+				},
+				inserted(elememt,binding ){
+					//获取焦点
+					elememt.focus()
+				},
+				//指令所在的末班被重新解析时
+				update(elememt,binding){
+					elememt.value = binding.value
+				}
+			}
+		}
+	})
+</script>
+</html>
