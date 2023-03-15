@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>分析生命周期</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+	<div id="root">
+		<!-- <h2>当前的值:{{n}}</h2>
+		<button @click=add>点我+1</button>
+		<button @click=bye>点我销毁vm</button> -->
+	</div>
+</body>
+<script type="text/javascript">
+	Vue.config.productionTip = false
+	new Vue({
+		el: '#root',
+		// 配置模板
+		// template:`<div>
+		// 			<h2>当前的值:{{n}}</h2>
+		// 			<button @click=add>点我+1</button>
+		// 			<button @click=bye>点我销毁vm</button>
+		// 	</div>`,
+		data: {
+			n: 1,
+		},
+		methods: {
+			add() {
+				console.log('add')
+				this.n++
+			},
+			bye() {
+				console.log('bye')
+				this.$destory()
+			}
+		},
+		watch: {
+			n() {
+				console.log('n变了')
+			}
+		},
+		beforeCreate() {
+			console.log('beforeCreate')
+			console.log(this) //无data,无方法。
+			// debugger
+			//debugger
+		},
+		//数据监测 数据代理
+		//数据监测 数据代理 完毕
+		created() {
+			console.log('created')
+			console.log(this) //有data,有方法。
+			//debugger
+		},
+		//编译el外部的外部html,不写template则将当前el指定div左右模板。
+		//未经vue处理的dom模板,还没有做模板替换。
+		//未经处理的dom,对dom的操作不作效。
+		beforeMount() {
+			console.log('beforeMount')
+			console.log(this) 
+			//debugger
+		},
+		//vue将虚拟dom转为真实dom,并赋值到vm.$el上。
+		//6、页面呈现经过vue编译dom,开始 定时器、发送网络请求、消息订阅、事件。(操作dom有效。)
+		mounted() { 
+			//this.$el元素是dom保存的dom元素。
+			console.log('mounted'+this.$el) 
+		},
+		//
+		beforeUpdate() { console.log('beforeUpdate') },
+		updated() { console.log('updated') },
+		beforeDestory() { console.log('beforeDestory') },
+		destoryed() { console.log('destoryed') },
+	})
+</script>
+
+</html>
