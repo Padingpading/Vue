@@ -9,9 +9,9 @@
 
 <body>
 	<div id="root">
-		<!-- <h2>当前的值:{{n}}</h2>
+		<h2>当前的值:{{n}}</h2>
 		<button @click=add>点我+1</button>
-		<button @click=bye>点我销毁vm</button> -->
+		<button @click=bye>点我销毁vm</button>
 	</div>
 </body>
 <script type="text/javascript">
@@ -34,7 +34,8 @@
 			},
 			bye() {
 				console.log('bye')
-				this.$destory()
+				//destroy方法,完全销毁实例vm,解绑vm上的指令和时间监听器。vm实例已经销毁了。
+				this.$destroy()
 			}
 		},
 		watch: {
@@ -63,17 +64,21 @@
 			console.log(this) 
 			//debugger
 		},
-		//vue将虚拟dom转为真实dom,并赋值到vm.$el上。
+		//5、vue将虚拟dom转为真实dom,并赋值到vm.$el上。
 		//6、页面呈现经过vue编译dom,开始 定时器、发送网络请求、消息订阅、事件。(操作dom有效。)
 		mounted() { 
 			//this.$el元素是dom保存的dom元素。
 			console.log('mounted'+this.$el) 
 		},
-		//
+		//7、vue.data数据变更之前会调用,数据是新的。,页面和数据尚未同步。
 		beforeUpdate() { console.log('beforeUpdate') },
+		//8、model和view的渲染。
+		//9、vue.data数据变更之后。数据和页面都是新的。
 		updated() { console.log('updated') },
-		beforeDestory() { console.log('beforeDestory') },
-		destoryed() { console.log('destoryed') },
+		//10、vm销毁之前,一般用户关闭定时器,取消订阅消息、解绑自定义事件等收尾工作。
+		beforeDestroy() { console.log('beforeDestory') },
+		//11、vm销毁。
+		destroyed() { console.log('destoryed') },
 	})
 </script>
 
