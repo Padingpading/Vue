@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>非单文件组件</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+	<div id="root">
+		<h2>{{msg}}</h2>
+		<!-- 组件标签 -->
+		<school></school>
+		<student></student>
+		<hello></hello>
+	</div>
+</body>
+<script type="text/javascript">
+	Vue.config.productionTip = false
+
+
+	//创建shcool组件
+	const school = Vue.extend({
+		//el:'#root,//组件定义时一定不要写el配置项。
+		//应为最终所以的组件都要被一个vm管理,由vm决定那个容器
+		template: `
+				<div class="demo">
+					<h3>学校名称：{{schoolName}}</h3>
+					<h3>学校地址：{{address}}</h3>
+					<button @click="showName">点我提示学校名</button>	
+  			</div>`,
+		data() {
+			return {
+				schoolName: '尚硅谷',
+				address: '北京昌平'
+			}
+		},
+		methods: {
+			showName() {
+				alert(this.schoolName)
+			}
+		}
+	})
+
+	//创建shcool组件
+	const student = Vue.extend({
+		//el:'#root,//组件定义时一定不要写el配置项。
+		//应为最终所以的组件都要被一个vm管理,由vm决定那个容器
+		template: `
+		<div>
+					<h3>学生姓名：{{studentName}}</h3>
+					<h3>学生年龄：{{age}}</h3>
+  			</div>`,
+		data() {
+			return {
+				studentName: '张三',
+				age: 18
+			}
+		},
+		methods: {
+			showName() {
+				alert(this.schoolName)
+			}
+		}
+	})
+
+	//创建hello组件
+	const hello = Vue.extend({
+		//el:'#root,//组件定义时一定不要写el配置项。
+		//应为最终所以的组件都要被一个vm管理,由vm决定那个容器
+		template: `
+				<div>	
+					<h3>你好啊！{{name}}</h3>
+  			</div>
+			`,
+		data() {
+			return {
+				name: 'cess',
+			}
+		}
+	})
+
+
+	//创建vm
+	new Vue({
+		el: '#root',
+		data: {
+			msg: '你好啊'
+		},
+		components: {
+			school,
+			student
+		}
+	})
+
+</script>
+
+</html>
