@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>VueComponet</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+	<div id="root">
+		<!-- 不同的组件对应不同的VueComponet实例 -->
+		<school></school>
+		<hello></hello>
+	</div>
+</body>
+<script type="text/javascript">
+	Vue.config.productionTip = false
+	//组件
+	const school = Vue.extend({
+		name: 'school',
+		template: `
+				<div class="demo">
+					<h3>学校名称：{{schoolName}}</h3>
+					<h3>学校地址：{{address}}</h3>
+					<button @click="showName">点我提示学校名</button>
+  			</div>`,
+		data() {
+			return {
+				schoolName: '尚硅谷',
+				address: '北京昌平'
+			}
+		},
+		methods:{
+			showName(){
+				alert(this.schoolName,this )
+			}
+		}
+	})
+	//组件
+	const hello = Vue.extend({
+		template:'<h2>{{msg}}</h2>',
+		data(){
+			return {
+				msg:'你好啊'
+			}
+		}
+	})
+	//查看组件类型,每一次 Vue.extend都会创建一个VueComponent实例
+	console.log(school)
+	//组件本质:函数VueComponent
+	// VueComponent(options) {
+    //           this._init(options);
+    //       }
+	
+	//创建vm
+	new Vue({
+		el: '#root',
+		//注册组件
+		components: {
+			school,hello
+		}
+	})
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>几个注意点</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+	<!-- 容器 -->
+	<div id="root">
+		<h2>{{msg}}</h2>
+		<!-- 组件标签第一种形式 -->
+		<school></school>
+		<!-- 组件形式第二种自闭合 脚手架中使用。 -->
+		<school/>
+	</div>
+</body>
+<script type="text/javascript">
+	Vue.config.productionTip = false
+
+	const component =  {
+		// 在开发这工具中的显示的名字。
+		name:'定义组件名字',
+		template: `
+				<div class="demo">
+					<h3>学校名称：{{schoolName}}</h3>
+					<h3>学校地址：{{address}}</h3>
+					<button @click="showName">点我提示学校名</button>	
+  			</div>`,
+		data() {
+			return {
+				schoolName: '尚硅谷',
+				address: '北京昌平'
+			}
+		}
+	}
+
+	
+	//定义组件
+	//定义组件第一种形式
+	const s = Vue.extend(component)
+	//定义组件第二种形式,内部会封装上Vue.extend()方法。
+	const ss = component
+
+	//创建vm
+	new Vue({
+		el: '#root',
+		data: {
+			msg: '你好啊'
+		},
+		components: {
+			//组件名字:变量名字
+			//school:s
+			//多单词情况 单词-单词 -分割 
+			//Vue展示 MySchool
+			'my-school':s,
+			//多单词情况 大写单词+大写单词
+			//Vue展示 MySchool
+			'MySchool':s
+		}
+	})
+
+</script>
+
+</html>

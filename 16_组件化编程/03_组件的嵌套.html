@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>几个注意点</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<body>
+	<div id="root">
+		<app></app>
+	</div>
+</body>
+<script type="text/javascript">
+	Vue.config.productionTip = false
+
+
+	const student = Vue.extend({
+		name: 'student',
+		template: `
+				<div class="demo">
+					<h3>学校名称：{{schoolName}}</h3>
+					<h3>学校地址：{{address}}</h3>
+  			</div>`,
+		data() {
+			return {
+				schoolName: '尚硅谷',
+				address: '北京昌平'
+			}
+		}
+	})
+
+	const school = Vue.extend({
+		name: 'school',
+		template: `
+				<div class="demo">
+					<h3>学校名称：{{schoolName}}</h3>
+					<h3>学校地址：{{address}}</h3>
+					//加载子组件
+					<student></student>
+  			</div>`,
+		data() {
+			return {
+				schoolName: '尚硅谷',
+				address: '北京昌平'
+			}
+		},
+		//注册子组件
+		components: {
+			student
+		}
+	})
+	//定义hello组件
+	const hello = Vue.extend({
+		template: ' <h1>{{msg}}</h1>',
+		data() {
+			return {
+				msg: '欢迎来到尚硅谷学习！'
+			}
+		}
+
+	});
+
+	//定义app组件
+	const app = Vue.extend({
+		template: '<div><hello></hello><school></school></div>',
+		components: {
+			school,
+			hello
+		}
+	})
+
+	//创建vm
+	new Vue({
+		el: '#root',
+		data: {
+			msg: '你好啊'
+		},
+		//注册组件
+		components: {
+			app
+		}
+	})
+
+</script>
+
+</html>
