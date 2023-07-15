@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>姓名案例-compited</title>
+ </head>
+<body>
+    <div id="root">
+        <!-- 需要的属性不存在,需要通过已有的属性计算得到 -->
+        <button id="btn"  @click="changeW()">改变</button>
+        <button id="btn1" @click="a.b.c++">改变</button>
+        <span>{{change}}</span>
+   </div>
+
+    <script type = 'text/javascript'>
+        Vue.config.productionTip = false
+        new  Vue({
+            el:'#root',
+            data:{
+                isHot:true,
+                a:{
+                    b:{
+                        c:1
+                    } 
+                }
+            },
+            computed:{
+                change(){
+                    return this.isHot?'夏':'冬'
+                }
+            },
+            methods:{
+                changeW(){
+                    this.isHot = !this.isHot
+                }
+            },
+            watch:{
+                // isHot:{
+                //     immediate:false,
+                //     handler(newValue,oldValue){
+                //         console.log('isHot被修改了', newValue, oldValue)
+                //     }
+                // },
+                a:{
+                    deep:true,
+                    handler(newValue,oldValue){
+                        console.log('a被修改了', newValue, oldValue)
+                    }
+                },
+                isHot(newValue,oldValue){
+                    console.log(newValue,oldValue)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

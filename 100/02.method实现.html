@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>method实现</title>
+ </head>
+<body>
+    <div id="root"> 
+        姓<input type="text" v-model="name">
+        名<input type="text" v-model="name2">
+        全名:{{fullName()}}
+   </div>
+
+    <script type = 'text/javascript'>
+        Vue.config.productionTip = false
+        new Vue({
+            el:"#root",
+            data:{
+                name:"里",
+                name2:"test"
+            },
+            methods:{
+                fullName(){
+                    return  this.name +  this.name2
+                }
+            }
+        })
+    </script>
+</body>
+</html>

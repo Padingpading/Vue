@@ -33,6 +33,7 @@
                     set(value){
                         // this指的是vm对象,直接获取属性是获取不到的。
                         //fullName被修改是会调用改方法.
+                        console.log("set被执行")
                         const str=  value.split('-');
                         this.firstName = str[0];
                         this.lastName = str[1];
