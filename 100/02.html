@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 插值语法 -->
+        <h1>{{name}}</h1>
+        <h1>{{age}}</h1>
+        <!--指令语法-->
+        <a v-bind:href="url">链接测试</a>
+        <a :href="url">链接测试2</a>
+    </div>
+    
+</body>
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            name:"哈哈",
+            age:12,
+            url:"https://www.baidu.com/"
+        }
+    })
+    
+</script>
+</html>
