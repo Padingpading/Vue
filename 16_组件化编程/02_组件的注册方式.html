@@ -3,35 +3,24 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<title>非单文件组件</title>
+	<title>组件的注册方式</title>
 </head>
 <script type="text/javascript" src="../js/vue.js"></script>
 
 <body>
 	<div id="root">
-		<!-- Vue对象值标签 -->
-		<h2>{{msg}}</h2>
-		<!--3、使用组件 组件标签 -->
+		<!--4、使用组件-->
 		<school></school>
 		<student></student>
-		<hello></hello>
+	</div>
+	<div id="root1">
+		<!--4、使用组件-->
+		<student></student>
 	</div>
 </body>
 <script type="text/javascript">
 	Vue.config.productionTip = false
 	
-	const component = Vue.extend({
-		template: `html和vue的模版`,
-		data() {
-			return {
-				propertyName: 'propertyValue',
-			}
-		},
-		methods: {
-			methodName() {
-			}
-		}
-	})
 	//1、创建shcool组件
 	const school = Vue.extend({
 		//el:'#root,//组件定义时一定不要写el配置项。
@@ -58,7 +47,8 @@
 		}
 	})
 
-	//创建shcool组件
+
+	//1、创建shcool组件
 	const student = Vue.extend({
 		//el:'#root,//组件定义时一定不要写el配置项。
 		//应为最终所以的组件都要被一个vm管理,由vm决定那个容器
@@ -80,37 +70,21 @@
 		}
 	})
 
-	//创建hello组件
-	const hello = Vue.extend({
-		//el:'#root,//组件定义时一定不要写el配置项。
-		//应为最终所以的组件都要被一个vm管理,由vm决定那个容器
-		template: `
-				<div>	
-					<h3>你好啊！{{name}}</h3>
-  			</div>
-			`,
-		data() {
-			return {
-				name: 'cess',
-			}
+	//2、注册组件(全局注册student)
+	Vue.component('student',student)
+
+	//3、创建vm监听root1
+	new Vue({
+		el: '#root',
+		// 2.1注册组件school,但是没有注册student(局部注册组件)
+		components: {
+			school
 		}
 	})
 
-
-	//2、创建vm
+    //3、创建vm监听root2
 	new Vue({
-		el: '#root',
-		data: {
-			msg: '你好啊'
-		},
-		// 2.1注册组件(局部注册组件)
-		components: {
-			//另一种形式 xuexiao:school
-			//另一种形式 xuesheng:student
-			school,
-			student,
-			hello
-		}
+		el: '#root1',
 	})
 </script>
 </html>
