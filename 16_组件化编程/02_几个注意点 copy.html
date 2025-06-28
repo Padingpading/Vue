@@ -12,9 +12,9 @@
 	<div id="root">
 		<h2>{{msg}}</h2>
 		<!-- 组件标签第一种形式 -->
-		<shcool></shcool>
+		<school></school>
 		<!-- 组件形式第二种自闭合 脚手架中使用。 -->
-		<!-- <school/> -->
+		<school/>
 	</div>
 </body>
 <script type="text/javascript">
@@ -22,11 +22,12 @@
 
 	const component =  {
 		// 在开发这工具中的显示的名字。
-		name:'atguigu',
+		name:'定义组件名字',
 		template: `
 				<div class="demo">
 					<h3>学校名称：{{schoolName}}</h3>
 					<h3>学校地址：{{address}}</h3>
+					<button @click="showName">点我提示学校名</button>	
   			</div>`,
 		data() {
 			return {
@@ -54,11 +55,10 @@
 			//school:s
 			//多单词情况 单词-单词 -分割 
 			//Vue展示 MySchool
-			//'my-school':s,
+			'my-school':s,
 			//多单词情况 大写单词+大写单词
 			//Vue展示 MySchool
-			//'MySchool':s
-			shcool:s
+			'MySchool':s
 		}
 	})
 

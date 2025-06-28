@@ -1,18 +1,25 @@
 <template>
-    <div>
-        <h2>学生姓名：{{name}}</h2>
-        <h2>学生年龄：{{age}}</h2>
-    </div>
+    <div class="demo">
+					<h3>学生名称：{{name}}</h3>
+					<h3>学生年龄：{{age}}</h3>
+  			</div>
 </template>
 
 <script>
-    export default {
-        name:'Student',
-        data() {
-            return {
-                name:'cess',
-                age:20
-            }
-        },
-    }
+   export default {
+		name:'School',
+		data() {
+			return {
+				name: 'sx',
+				age: 18
+			}
+		}
+	}
 </script>
+
+<style>
+	.demo{
+		background-color:orange;
+	}
+</style>
+

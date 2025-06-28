@@ -9,9 +9,8 @@
 
 <body>
 	<div id="root">
-		<!-- Vue对象值标签 -->
 		<h2>{{msg}}</h2>
-		<!--3、使用组件 组件标签 -->
+		<!-- 组件标签 -->
 		<school></school>
 		<student></student>
 		<hello></hello>
@@ -19,38 +18,24 @@
 </body>
 <script type="text/javascript">
 	Vue.config.productionTip = false
-	
-	const component = Vue.extend({
-		template: `html和vue的模版`,
-		data() {
-			return {
-				propertyName: 'propertyValue',
-			}
-		},
-		methods: {
-			methodName() {
-			}
-		}
-	})
-	//1、创建shcool组件
+
+
+	//创建shcool组件
 	const school = Vue.extend({
 		//el:'#root,//组件定义时一定不要写el配置项。
 		//应为最终所以的组件都要被一个vm管理,由vm决定那个容器
-		// 1.1组件模版
 		template: `
 				<div class="demo">
 					<h3>学校名称：{{schoolName}}</h3>
 					<h3>学校地址：{{address}}</h3>
 					<button @click="showName">点我提示学校名</button>	
   			</div>`,
-		// 1.2组件数据
 		data() {
 			return {
 				schoolName: '尚硅谷',
 				address: '北京昌平'
 			}
 		},
-		// 1.2组件方法
 		methods: {
 			showName() {
 				alert(this.schoolName)
@@ -97,20 +82,19 @@
 	})
 
 
-	//2、创建vm
+	//创建vm
 	new Vue({
 		el: '#root',
 		data: {
 			msg: '你好啊'
 		},
-		// 2.1注册组件(局部注册组件)
 		components: {
-			//另一种形式 xuexiao:school
-			//另一种形式 xuesheng:student
 			school,
-			student,
-			hello
+			student
+			// 
 		}
 	})
+
 </script>
+
 </html>
